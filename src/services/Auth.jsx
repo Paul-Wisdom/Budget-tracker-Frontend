@@ -21,9 +21,15 @@ const signOut = () => {
     const url = baseUrl + 'signout';
     return axios.post(url)
 }
+
+const changePassword = (email, newPassword) => {
+    const url = baseUrl + 'change-password';
+    return axios.post(url, {email: email, newPassword: newPassword})
+}
 export default {
     signUp,
     signIn,
     isLoggedIn,
-    signOut
+    signOut,
+    changePassword
 }

@@ -51,6 +51,11 @@ const createIncomeTransaction = (income) => {
     const url = baseUrl + "create-income-transaction";
     return axios.post(url, income);
 }
+
+const getTransactions = () => {
+    const url = baseUrl + "get-transactions";
+    return axios.get(url);
+}
 export default {
     getCurrentBudget,
     getAllExpenses,
@@ -61,5 +66,6 @@ export default {
     getExpense,
     editExpense,
     deleteExpense,
-    createExpenseTransaction
+    createExpenseTransaction,
+    getTransactions
 }
