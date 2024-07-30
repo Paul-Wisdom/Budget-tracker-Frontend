@@ -3,33 +3,33 @@ axios.defaults.withCredentials = true;
 const baseUrl = "http://localhost:3001/api/";
 
 const signUp = (user) => {
-    const url = baseUrl + 'signup'
-    return axios.post(url, user);
-}
+  const url = baseUrl + "signup";
+  return axios.post(url, user);
+};
 
 const signIn = (user) => {
-    const url = baseUrl + 'signin';
-    return axios.post(url, user);
-}
+  const url = baseUrl + "signin";
+  return axios.post(url, user);
+};
 
 const isLoggedIn = () => {
-    const url = baseUrl + 'auth';
-    return axios.post(url);
-}
+  const url = baseUrl + "auth";
+  return axios.post(url);
+};
 
 const signOut = () => {
-    const url = baseUrl + 'signout';
-    return axios.post(url)
-}
+  const url = baseUrl + "signout";
+  return axios.post(url);
+};
 
 const changePassword = (email, newPassword) => {
-    const url = baseUrl + 'change-password';
-    return axios.post(url, {email: email, newPassword: newPassword})
-}
+  const url = baseUrl + "change-password";
+  return axios.post(url, { email: email, newPassword: newPassword });
+};
 export default {
-    signUp,
-    signIn,
-    isLoggedIn,
-    signOut,
-    changePassword
-}
+  signUp,
+  signIn,
+  isLoggedIn,
+  signOut,
+  changePassword,
+};
