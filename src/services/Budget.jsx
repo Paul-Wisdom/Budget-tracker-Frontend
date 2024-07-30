@@ -1,6 +1,6 @@
 import axios from "axios";
 axios.defaults.withCredentials = true;
-const baseUrl = "http://localhost:3001/api/";
+const baseUrl = "/api/";
 
 const createBudget = () => {
   const url = baseUrl + "create-budget";
