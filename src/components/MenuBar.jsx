@@ -15,7 +15,7 @@ const MenuBar = ({ active }) => {
         <div className="bg-black min-w-6 min-h-1 max-w-6 mb-1"></div>
         <div className="bg-black min-w-6 min-h-1 max-w-6 mb-1"></div>
       </div>
-      <SideBar menuClicked={menuClicked} active={active} />
+      <SideBar menuClicked={menuClicked} active={active} setMenuClicked={setMenuClicked}/>
     </div>
   );
 };

@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
-const SideBar = ({ menuClicked, active }) => {
+const SideBar = ({ menuClicked, active, setMenuClicked }) => {
   let style =
-    "text-white md:flex md:flex-col w-15vw min-h-screen bg-gradient-to-r from-green-300 to-green-500 hidden";
+    "text-white fixed md:flex md:flex-col w-15vw min-h-screen bg-gradient-to-r from-green-300 to-green-500 hidden";
   let linkStyles = [
     "mt-14 mb-2 ml-3 hover:text-green-600  active:text-green-600",
     "mb-2 ml-3 hover:text-green-600 active:text-green-600",
@@ -13,10 +13,11 @@ const SideBar = ({ menuClicked, active }) => {
   }
   if (menuClicked) {
     style =
-      "text-white flex flex-col w-40vw md:w-15vw min-h-screen bg-gradient-to-r from-green-300 to-green-500";
+      "text-white fixed flex flex-col w-40vw md:w-15vw min-h-screen bg-gradient-to-r from-green-300 to-green-500";
   }
   return (
     <div className={style}>
+      <h1 className="md:hidden font-bold text-2xl mb-3 ml-3 mt-3 text-black" onClick={() => setMenuClicked(false)}>X</h1>
       <Link className={linkStyles[0]} to="/home">
         Budget
       </Link>

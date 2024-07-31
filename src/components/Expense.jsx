@@ -15,7 +15,7 @@ const Expense = ({ expense, budget }) => {
     navigate(`/get-expense?expense_id=${expense.id}&budget_id=${budget.id}`);
   };
   return (
-    <div className="md:mx-auto md:w-3/5 my-2 min-h-20 border-x-2 border-y-2 border-green-500 flex flex-row">
+    <div className="md:mx-auto md:w-3/5 my-2 min-h-20 border-x-2 border-y-2 border-green-500 flex flex-row mr-4">
       <div className="flex flex-col flex-1">
         <div className="flex">
           <p className="flex-1 text-xl ml-4">{expense.name}</p>
@@ -441,7 +441,7 @@ const GetExpense = ({ isAuth }) => {
         <div className="w-full  bg-green-500 min-h-9  mt-0 text-xl text-white md:text-center">
           Expenses
         </div>
-        <div className="border-x-4 border-y-4 border-green-500 md:w-3/5 md:mx-auto mt-8 p-3 rounded-lg">
+        <div className="border-x-4 border-y-4 border-green-500 md:w-3/5 md:mx-auto mt-8 p-3 rounded-lg mr-4">
           <h2 className="text-center text-2xl text-black">{expense.name}</h2>
           <div className="flex flex-row">
             <h3 className="flex-1">Amount Budgeted (N): </h3>

@@ -132,7 +132,7 @@ const Budget = () => {
 
         <div className="mt-2 md:w-3/5 md:mx-auto sm:max-md:mr-4">
           <h2 className="text-center text-2xl">SUMMARY</h2>
-          <div className="flex flex-col">
+          <div className="flex flex-col mr-4">
             <div className="flex flex-row">
               <p className="flex-1">Total Expenses Budgeted:</p>
               <p>N {total.totalAmountBudgeted}</p>
