@@ -4,7 +4,7 @@ import { useState, useEffect } from "react";
 import budgetServices from "../services/Budget";
 import { Income } from "./Income";
 import { Expense } from "./Expense";
-import { SideBar } from "./SideBar";
+import LoadingSpinner from "./LoadingSpinner";
 import MenuBar from "./MenuBar";
 
 const Budget = () => {
@@ -91,7 +91,7 @@ const Budget = () => {
           <div className="w-full  bg-green-500 min-h-9  mt-0 text-xl text-white md:text-center">
             Budget
           </div>
-          <p>Loading...</p>
+          <LoadingSpinner />
         </div>
       </div>
     );

@@ -4,7 +4,7 @@ import { Pie, Doughnut, Bar } from "react-chartjs-2";
 
 import budgetServices from "../services/Budget";
 
-import { SideBar } from "./SideBar";
+import LoadingSpinner from "./LoadingSpinner";
 import MenuBar from "./MenuBar";
 
 import {
@@ -357,7 +357,7 @@ const ChartPage = () => {
             Overview
           </div>
           <>
-            <p>Loading...</p>
+            <LoadingSpinner />
           </>
         </div>
       </div>

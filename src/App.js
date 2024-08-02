@@ -17,7 +17,7 @@ import { ForgetPassword } from "./components/ForgetPassword";
 import { Welcome } from "./components/Welcome";
 import { NavBar } from "./components/NavBar";
 import { ChartPage } from "./components/Chart";
-
+import LoadingSpinner from "./components/LoadingSpinner";
 // const Welcome = () => {
 //   return(
 //     <>
@@ -52,7 +52,7 @@ function App() {
     return (
       <div className="flex flex-col">
         {/* <NavBar/> */}
-        <>Loading ...</>
+        <LoadingSpinner />
       </div>
     );
   }

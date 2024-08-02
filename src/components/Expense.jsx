@@ -3,7 +3,8 @@ import { useQuery } from "./helpers";
 import { useNavigate, Link } from "react-router-dom";
 import { useState, useEffect } from "react";
 
-import { SideBar } from "./SideBar";
+import LoadingSpinner from "./LoadingSpinner";
+import { Message } from "./Message";
 import ProgressBar from "./ProgressBar";
 import MenuBar from "./MenuBar";
 
@@ -47,9 +48,12 @@ const CreateExpense = () => {
   const [amountBudgeted, setAmountBudgeted] = useState("");
   const [createdExpense, setCreatedExpense] = useState(false);
   const [val, setval] = useState("Create Expense");
-
+  const [messageType, setMessageType] = useState(null);
+  const [message, setMessage] = useState(null);
+  
   const submitHandler = (event) => {
     event.preventDefault();
+    setMessage("Creating Expense...")
     budgetServices
       .createExpense({ name: name, amountBudgeted: amountBudgeted })
       .then((result) => {
@@ -113,6 +117,7 @@ const CreateExpense = () => {
             </span>
           </div>
           <div className=" w-full h-4/5">
+            <Message message={message} messageType={messageType}/>
             <form onSubmit={submitHandler}>
               <div className="flex flex-col p-2">
                 <label htmlFor="name">Name:</label>
@@ -164,6 +169,8 @@ const GetExpense = ({ isAuth }) => {
   const [createMode, setCreateMode] = useState(false);
   const [createdtransaction, setCreatedTransaction] = useState(false);
   const [val, setVal] = useState(["Edit Expense", "Create Transaction"]);
+  const [messageType, setMessageType] = useState(null);
+  const [message, setMessage] = useState(null);
   const navigate = useNavigate();
 
   const query = useQuery();
@@ -193,6 +200,7 @@ const GetExpense = ({ isAuth }) => {
 
   const editHandler = (event) => {
     event.preventDefault();
+    setMessage("Editting Expense ...");
     budgetServices
       .editExpense(name, amountBudgeted, expense.id, budget_id)
       .then((result) => {
@@ -234,6 +242,7 @@ const GetExpense = ({ isAuth }) => {
 
   const expenseTransactionHandler = (event) => {
     event.preventDefault();
+    setMessage("Creating Expense Transaction...")
     budgetServices
       .createExpenseTransaction({
         expense_id: expense_id,
@@ -259,7 +268,7 @@ const GetExpense = ({ isAuth }) => {
             Expenses
           </div>
           <>
-            <>Loading...</>
+            <LoadingSpinner />
           </>
         </div>
       </div>
@@ -283,6 +292,7 @@ const GetExpense = ({ isAuth }) => {
               </div>
             </div>
             <div className=" w-full h-4/5 ">
+              <Message message={message} messageType={messageType} />
               <form onSubmit={editHandler}>
                 <div className="flex flex-col p-2">
                   <label htmlFor="name">Name:</label>
@@ -379,6 +389,7 @@ const GetExpense = ({ isAuth }) => {
                 {expense.name}
               </h2>
               <form onSubmit={expenseTransactionHandler}>
+                <Message message={message} messageType={messageType} />
                 <div className="flex flex-col p-2">
                   <label htmlFor="amount">Amount:</label>
                   <input

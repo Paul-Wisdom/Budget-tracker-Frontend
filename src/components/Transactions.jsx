@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 
 import { useNavigate } from "react-router-dom";
 
-import { SideBar } from "./SideBar";
+import LoadingSpinner from "./LoadingSpinner";
 import MenuBar from "./MenuBar";
 
 import budgetServices from "../services/Budget";
@@ -69,7 +69,7 @@ const TransactionsPage = () => {
             Expenses
           </div>
           <>
-            <p>Loading ....</p>
+            <LoadingSpinner />
           </>
         </div>
       </div>

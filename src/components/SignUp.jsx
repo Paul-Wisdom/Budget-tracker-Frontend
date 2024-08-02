@@ -19,6 +19,7 @@ const SignUp = () => {
 
   const submitHandler = (event) => {
     event.preventDefault();
+    setMessage("Signing Up...");
     if (password.length < 8) {
       setMessage("Password must have a minimum length of 8");
       setMessageType(1);

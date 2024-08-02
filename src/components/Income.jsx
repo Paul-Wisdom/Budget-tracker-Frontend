@@ -1,7 +1,8 @@
 import { useNavigate, Link } from "react-router-dom";
 import { useState, useEffect } from "react";
 
-import { SideBar } from "./SideBar";
+
+import { Message } from "./Message";
 import MenuBar from "./MenuBar";
 
 import budgetServices from "../services/Budget";
@@ -20,8 +21,11 @@ const CreateIncome = ({ isAuth }) => {
   const [createdIncome, setCreatedIncome] = useState(false);
   const [note, setNote] = useState("");
   const [val, setVal] = useState("Create Income");
+  const [messageType, setMessageType] = useState(null);
+  const [message, setMessage] = useState(null);
   const submitHandler = (event) => {
     event.preventDefault();
+    setMessage("Creating Income...");
     budgetServices
       .createIncomeTransaction({ name: name, amount: amount, note: note })
       .then((result) => {
@@ -82,6 +86,7 @@ const CreateIncome = ({ isAuth }) => {
             </div>
           </div>
           <div className=" w-full h-4/5 ">
+            <Message message={message} messageType={messageType} />
             <form onSubmit={submitHandler}>
               <div className="flex flex-col p-2">
                 <label htmlFor="name">Name:</label>

@@ -23,6 +23,7 @@ const ForgetPassword = () => {
       }, 5000);
     } else {
       event.preventDefault();
+      setMessage("Resetting Password...")
       authServices
         .changePassword(email, password)
         .then((result) => {

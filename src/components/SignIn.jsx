@@ -33,6 +33,7 @@ const SignIn = ({ setIsAuth }) => {
 
   const submitHandler = (event) => {
     event.preventDefault();
+    setMessage("Signing In...");
     authServices
       .signIn({ email: email, password: password })
       .then((result) => {
