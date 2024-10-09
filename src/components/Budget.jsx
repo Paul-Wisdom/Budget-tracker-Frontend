@@ -11,9 +11,13 @@ const Budget = () => {
   const [isloading, setIsLoading] = useState(true);
   const [currentBudgetExists, setCurrentBudgetExists] = useState(null);
   const [expense, setExpense] = useState([]);
+  const [allExpenses, setAllExpenses] = useState([]);
   const [income, setIncome] = useState([]);
+  const [allIncomes, setAllIncomes] = useState([]);
   const [budget, setBudget] = useState(null);
   const [total, setTotal] = useState(null);
+  const [viewAllExpenses, setViewAllExpenses] = useState(false);
+  const [viewAllIncomes, setViewAllIncomes] = useState(false);
 
   const navigate = useNavigate();
 
@@ -36,12 +40,14 @@ const Budget = () => {
             .getAllExpenses(b.id)
             .then((expenses) => {
               setExpense(expenses.data);
+              setAllExpenses(expenses.data.reverse());
               console.log(expenses);
               return budgetServices.getAllIncomes(b.id);
             })
             .then((incomes) => {
               console.log(incomes);
               setIncome(incomes.data);
+              setAllIncomes(incomes.data.reverse());
               return budgetServices.getTotal(b.id);
             })
             .then((total) => {
@@ -59,8 +65,30 @@ const Budget = () => {
       })
       .catch((err) => {
         console.log(err);
+        if(err.response.status === 401)
+          {
+            navigate('/signIn')
+          }
       });
   }, [navigate]);
+
+  useEffect(() => {
+    if(!viewAllExpenses)
+    {
+      setExpense(allExpenses.slice(0, 5))
+    }
+    else{
+      setExpense(allExpenses)
+    }
+
+    if(!viewAllIncomes)
+    {
+      setIncome(allIncomes.slice(0, 5))
+    }
+    else{
+      setIncome(allIncomes)
+    }
+  }, [viewAllExpenses, allExpenses, viewAllIncomes, allIncomes])
 
   const createBudgetHandler = () => {
     budgetServices
@@ -72,6 +100,10 @@ const Budget = () => {
       })
       .catch((err) => {
         console.log(err);
+        if(err.response.status === 401)
+        {
+          navigate('/signIn')
+        }
       });
   };
 
@@ -162,14 +194,15 @@ const Budget = () => {
         </div>
 
         <h3 className="text-center text-2xl text-green-500">Expenses</h3>
-        {expense.length > 0 ? (
+        {allExpenses.length > 0 ? (
           expense.map((e) => {
             return <Expense key={e.id} expense={e} budget={budget} />;
           })
         ) : (
           <p className="text-center text-xl">No expense yet</p>
         )}
-
+        {expense.length <= 5 && allExpenses.length > 5? <button className="text-green-500 border-b-2 border-green-500 text-left w-20 mb-3" onClick={() => setViewAllExpenses(true)}>View more</button>: <p></p>}
+        {expense.length > 5 ? <button className="text-green-500 border-b-2 border-green-500 text-left w-20 mb-3" onClick={() => setViewAllExpenses(false)}>View less</button>: <p></p>}
         <div className="mx-auto">
           <button
             className="bg-green-400 active:bg-green-500 w-32 h-7 border-2 text-white rounded-md"
@@ -187,7 +220,8 @@ const Budget = () => {
         ) : (
           <p className="text-center text-xl">No Income yet</p>
         )}
-
+        {income.length <= 5 && allIncomes.length > 5? <button className="text-green-500 border-b-2 border-green-500 text-left w-20 mb-3" onClick={() => setViewAllIncomes(true)}>View more</button>: <p></p>}
+        {income.length > 5 ? <button className="text-green-500 border-b-2 border-green-500 text-left w-20 mb-3"  onClick={() => setViewAllIncomes(false)}>View less</button>: <p></p>}
         <div className="mx-auto">
           <button
             className="bg-green-400 active:bg-green-500 w-32 h-7 border-2 text-white rounded-md"

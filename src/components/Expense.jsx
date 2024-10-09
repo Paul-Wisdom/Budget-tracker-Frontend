@@ -50,7 +50,7 @@ const CreateExpense = () => {
   const [val, setval] = useState("Create Expense");
   const [messageType, setMessageType] = useState(null);
   const [message, setMessage] = useState(null);
-  
+  const navigate = useNavigate()
   const submitHandler = (event) => {
     event.preventDefault();
     setMessage("Creating Expense...")
@@ -62,6 +62,10 @@ const CreateExpense = () => {
       })
       .catch((err) => {
         console.log(err);
+        if(err.response.status === 401)
+          {
+            navigate('/signIn')
+          }
       });
   };
 
